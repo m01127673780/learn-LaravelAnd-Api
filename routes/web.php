@@ -18,3 +18,4 @@ Route::get('/', function () {
  
  Route::get('all/news','NewsController@all_news'); 
  Route::post('insert/news','NewsController@insert_news');
+ Route::post('del/news/{id?}','NewsController@delete');

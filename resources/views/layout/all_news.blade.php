@@ -42,7 +42,8 @@
                      <th>content</th>
                     <th>status</th>
                     <th>id</th>
-                  
+                    <form method="post" action="{{url('del/news')}}">
+
                   @foreach($all_news as $news)
                   <tr>
                      <td>{{$news->title}}</td>   
@@ -50,13 +51,20 @@
                     <td>{{$news->desc}}</td>
                     <td>{{$news->content}}</td>
                     <td>{{$news->status}}</td>
-                    <td>{{$news->id}}</td>
-                </tr>
+                    <td> 
 
+                         {!! csrf_field ()!!}
+                        <input type="hidden" method="_method" value="delete">
+                        <input type="checkbox" name="id[]" value="{{$news->id}}">
+                    </td>
+                </tr>
                   @endforeach
+                  <input type="submit" value="deletMultple">
+
+                                         </form>
+
                </table>
-               {{$all_news->render()}}
-              </div>
+               </div>
         </div>
     </body>
 </html>

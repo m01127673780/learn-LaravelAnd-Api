@@ -7,8 +7,8 @@ use View;
 class NewsController extends Controller{
 
    public function all_news(Request $request ){
-    // $all_news = News::orderBy('desc','desk')->get(['title','add_by','desc','content','status','id']);
-    $all_news = News::orderBy('desc','desk')->paginate(7);
+    $all_news = News::orderBy('desc','desk')->get(['title','add_by','desc','content','status','id']);
+    // $all_news = News::orderBy('desc','desk')->paginate(7);
     return view ('layout.all_news',['all_news' => $all_news]);
      } 
      public function insert_news()
@@ -20,13 +20,18 @@ class NewsController extends Controller{
 					'content'=>request('content'),
 					'status'=>request('status')
       ]);
-      /*
-      $add->title = request('title');
-      $add->desc = request('desc');
-      $add->add_by = request('add_by');
-      $add->content = request('content');
-      $add->status = request('status');
-      $add->save();*/
+       
       return redirect('all/news');
      } 
+     public function delete($id=null){
+      // return request ('id');
+       if($id != null)
+       {
+      $del = News::find($id);
+      $del->delete();
+      }else if(request()->has('id')){
+        News::destroy(request('id'));
+      }
+      return redirect('all/news');
+     }
 }
