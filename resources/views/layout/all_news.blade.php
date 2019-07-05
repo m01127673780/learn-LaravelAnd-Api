@@ -17,7 +17,8 @@
     </h1>
         <div class="flex-center position-ref full-height">
 
-       <form method="post" action="{{url('insert/news')}}">
+           
+<form method="post" action="{{url('insert/news')}}">
             {!! csrf_field() !!}
             <input        type="text"      name="title"  value="title"  placeholder="title"   >     <br> 
             <input        type="number"    name="add_by"  value="5"     placeholder="add_by"   ><br> 
@@ -30,7 +31,7 @@
             </select><br><br><br><br><br>
             <input       type="submit"   value="Sand"  >
            </form><!--form-->
-
+<br><br><br>
             <div class="content">
             
                 <table border=""> 
