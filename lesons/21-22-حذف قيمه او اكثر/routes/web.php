@@ -14,15 +14,8 @@ Route::pattern('id' ,'[0-9]+');
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-
-
- Route::get('test','NewsController@test' );
- Route::post('test/1', function(Illuminate\Http\Request $request){
-     return $request->all();
- });
-
-Route::get('all/news','NewsController@all_news');
-Route::post('insert/news','NewsController@insert_news');
-Route::delete('del/news/{id?}','NewsController@delete');
+}); 
+ 
+ Route::get('all/news','NewsController@all_news'); 
+ Route::post('insert/news','NewsController@insert_news');
+ Route::post('del/news/{id?}','NewsController@delete');

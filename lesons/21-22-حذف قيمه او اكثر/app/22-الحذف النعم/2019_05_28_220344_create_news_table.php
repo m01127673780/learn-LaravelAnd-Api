@@ -14,15 +14,16 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titel');
-            $table->integer('add_by');
-            $table->text('desc');
-            $table->longtext('content');
-            $table->enum('status',['actiev','pending','deactive']);
-            $table->softDeletes();
+            $table->string   ('title');
+            $table->integer  ('add_by');
+            $table->text     ('desc');
+            $table->longtext ('content');
+            $table->enum     ('status',['active','pending','deactive']);
+            $table->softdeletes();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *

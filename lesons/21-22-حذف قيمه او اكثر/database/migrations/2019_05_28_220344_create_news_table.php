@@ -19,10 +19,10 @@ class CreateNewsTable extends Migration
             $table->text('desc');
             $table->longtext('content');
             $table->enum('status',['actiev','pending','deactive']);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      *
