@@ -47,11 +47,11 @@ $date = $this->validate(request(),[
   
 //      News::create($date);
      //  News::updateOrCreate([
-					// 'title'=>request('title'),v 
-					// 'desc'=>request('desc'),
-					// 'add_by'=>request('add_by'),
-					// 'content'=>request('content'),
-					// 'status'=>request('status')
+          // 'title'=>request('title'),v 
+          // 'desc'=>request('desc'),
+          // 'add_by'=>request('add_by'),
+          // 'content'=>request('content'),
+          // 'status'=>request('status')
      //  ]);
 
        Session::push('Meseeg',['Key1'=>'val1']);
