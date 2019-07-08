@@ -5,14 +5,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>all_news</title>
+        <title>{{trans('admin.news')}} </title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
  
     </head>
     <body>
-      @if ($errors->any())
+  
+<h1>Create Post</h1>
+
+@if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -21,6 +24,18 @@
         </ul>
     </div>
 @endif
+<hr>
+@if(session()->has('Meseeg'))
+ 
+<hr/>
+{{   session()->get('Meseeg')[0] ['Key1'] }}4<hr>
+{{   session()->get('Meseeg1')}}
+ 
+ <hr>
+  @endif
+  
+
+<center><h1>{{trans('admin.news')}} </h1></center>
 
         <div class="flex-center position-ref full-height">
      
@@ -57,13 +72,19 @@
 
               </tr>                 
 
-               @foreach($all_news as $news)
-               <tr>>
+              
+                @foreach($all_news as $news)
+               <tr>
+ 
                    <td>{{$news->title}}</td>   
                    <td>{{$news->add_by}}</td>
                     <td>{{$news->desc}}</td>
                     <td>{{$news->status}}</td>
-                    <td>{{!empty($news->deleted_at)?'Trashed':'published'}}</td>
+          
+<td>{{!empty($news->deleted_at)?'Trashed':'published'}}</td>
+                    <td>                    <td>
+                    <td>
+
                     <td>{{$news->id}}</td>
                     <td>    
                             <input type="checkbox" name="id[]" value="{{$news->id}}" >

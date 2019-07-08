@@ -4,15 +4,8 @@ namespace App\Http\Controllers;
 use App\News;
 use Illuminate\Http\Request;
 use View;
-use Session;
 class NewsController extends Controller{
-   public function all_news(Request $request ){  
-   //Session::->flush();
-
-       Session::push('Meseeg',['Key1'=>'val1']);
-       Session::put('Meseeg1','Key1 val1');
-       Session::all();
-
+   public function all_news(Request $request ){
     $all_news =    News::withTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id','deleted_at']);
     $soft_deletes= News::onlyTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id']);
     // $all_news = News::orderBy('desc','desk')->paginate(7);
@@ -43,10 +36,6 @@ $date = $this->validate(request(),[
 					// 'content'=>request('content'),
 					// 'status'=>request('status')
      //  ]);
-
-       Session::push('Meseeg',['Key1'=>'val1']);
-       Session::put('Meseeg1','Key1 val1');
-  
        return redirect('all/news');
      } 
      public function delete($id=null){

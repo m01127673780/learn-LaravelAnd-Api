@@ -24,17 +24,11 @@
         </ul>
     </div>
 @endif
-<hr>
-@if(session()->has('Meseeg'))
- 
-<hr/>
-{{   session()->get('Meseeg')[0] ['Key1'] }}4<hr>
-{{   session()->get('Meseeg1')}}
- 
- <hr>
-  @endif
-  
 
+
+<hr>
+ 
+<hr>
 <center><h1>{{trans('admin.news')}} </h1></center>
 
         <div class="flex-center position-ref full-height">

@@ -11,7 +11,7 @@ class NewsController extends Controller{
 
        Session::push('Meseeg',['Key1'=>'val1']);
        Session::put('Meseeg1','Key1 val1');
-       Session::all();
+     Session::all();
 
     $all_news =    News::withTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id','deleted_at']);
     $soft_deletes= News::onlyTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id']);
