@@ -41,24 +41,23 @@
      
             <div class="content">
             <div class=" ">
-                <form method="post" action="{{url('insert/news')}}">
-                    <input type="hidden" name="_token"   value="{{csrf_token()}}">
+           
+<hr>
+{!! Form::open(['url'=>'insert/news' ]) !!}
+<div class="form-group">   
+  {{Form::text('title',old('title'),['placeholder'=>'title'])}}<br>     
+  {{Form::text('desc',old('desc'),['placeholder'=>'descripton'])}}<br>     
+  {{Form::number('add_by',old('add_by'),['placeholder'=>'add_by',''])}}<br>     
+  {{Form::textarea('content',old('content'),['placeholder'=>'content'])}}<br>     
+  {{Form::select('status',[''=>'......','active'=>'active','pending'=>'pending','deactive'=>'deactive'],old('status'),['placeholder'=>' placeholdermmmmmmmmm'])}}<br>     
+{{  Form::submit('send_btn')  }}
+ {!! Form::close() !!}
 
-                    <input type="text"   name="title"    value="{{old('title')}}"    placeholder="title"  ><br><br>
-                    <input type="text"   name="desc"     value="{{old('desc')}}"     placeholder="desc"   > <br><br> 
-                    <input type="number" name="add_by"   value="{{old('add_by')}}"   placeholder="add_by"  min="1" max="5" ><br><br>
-                    <textarea            name="content"  value="{{old('content')}}"  placeholder="content">{{old('content')}}</textarea> <br><br>
-                    <select              name="status"       placeholder="status" >   <br><br>
-                    <option >......</option>
-                    <option value="active"    {{old ('status') == 'active'?'selected':''}} >active</option>
-                    <option value="pending "  {{old ('status') == 'pending'?'selected':''}}  >pending</option>
-                    <option value="deactive"  {{old ('status') == 'deactive'?'selected':''}}  >deactive</option>
-                    </select>
-                    <input type="submit"  value="submit">
-                </form>
+  
+
             </div>
                             <form method="post" action="{{url('del/news')}}">
-                            <input type="hidden"   name="_token" value="{{csrf_token()}}" >
+                            <input type="hidden" placeholder=""   name="_token" value="{{csrf_token()}}" >
                             <input type="hidden"   name="_method" value="DELETE" > 
 
                <table border="1" cellpadding="1" cellspacing="1">

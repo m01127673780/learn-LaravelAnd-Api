@@ -9,11 +9,8 @@ use Lang;
 use DB;
 class NewsController extends Controller{
    public function all_news(Request $request ){  
-   //Session::->flush();
-
-       Session::push('Meseeg',['Key1'=>'val1']);
-       Session::put('Meseeg1','Key1 val1');
-       Session::all();
+ 
+ 
 
     $all_news =    News::withTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id','deleted_at']);
     $soft_deletes= News::onlyTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id']);
@@ -43,9 +40,8 @@ $date = $this->validate(request(),[
           'status'  =>    'required',
 ],[],$attribute);
 
- DB::table('news')->insertGetId( $date);
-  
-//      News::create($date);
+   
+   News::create($date);
      //  News::updateOrCreate([
           // 'title'=>request('title'),v 
           // 'desc'=>request('desc'),
@@ -53,9 +49,7 @@ $date = $this->validate(request(),[
           // 'content'=>request('content'),
           // 'status'=>request('status')
      //  ]);
-
-       Session::push('Meseeg',['Key1'=>'val1']);
-       Session::put('Meseeg1','Key1 val1');
+ 
   
        return redirect('all/news');
      } 
