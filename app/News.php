@@ -12,4 +12,4 @@ use  SoftDeletes;
       protected $fillable = ['title', 'user_id', 'desc', 'content', 'status'];
       protected $date = ['delete_at'];
   }
-
+ 

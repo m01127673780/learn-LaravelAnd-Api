@@ -3,7 +3,7 @@ return [
           'news'   => 'News',
           'title'   => 'العنوان',
           'desc'    => 'Desc News',
-          'add_by'  => 'Who Add By',
+          'user_id'  => 'Who Add By',
           'content' => 'Status News',
           'status'  => 'Status News',
 ];

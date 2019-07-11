@@ -15,7 +15,7 @@ for($i = 0; $i<10; $i++)
 		{
  
 			$add = new News;
- 			$add->add_by = '1';
+ 			$add->user_id = '1';
 			$add->title = 'news Title'.rand(0,9);
 			$add->desc = 'news Descripton Test'.rand(0,9);
 			$add->content = 'news content  '.rand(0,9);

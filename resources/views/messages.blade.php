@@ -1,13 +1,13 @@
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
+    <div >
+        <ol class="btn-danger  ">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+               <li class="btn-danger  ">  {{ $error }}</li>
+             @endforeach
+        </ol>
     </div>
 @endif
-<hr>
+<hr><!-- 
 @if(session()->has('Meseeg'))
  
 <hr/>
@@ -15,4 +15,4 @@
 {{   session()->get('Meseeg1')}}
  
  <hr>
-  @endif
+  @endif -->
