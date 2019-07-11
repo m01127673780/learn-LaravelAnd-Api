@@ -110,14 +110,14 @@ class FileTest extends TestCase
 
     public function getFilenameFixtures()
     {
-        return array(
-            array('original.gif', 'original.gif'),
-            array('..\\..\\original.gif', 'original.gif'),
-            array('../../original.gif', 'original.gif'),
-            array('файлfile.gif', 'файлfile.gif'),
-            array('..\\..\\файлfile.gif', 'файлfile.gif'),
-            array('../../файлfile.gif', 'файлfile.gif'),
-        );
+        return [
+            ['original.gif', 'original.gif'],
+            ['..\\..\\original.gif', 'original.gif'],
+            ['../../original.gif', 'original.gif'],
+            ['файлfile.gif', 'файлfile.gif'],
+            ['..\\..\\файлfile.gif', 'файлfile.gif'],
+            ['../../файлfile.gif', 'файлfile.gif'],
+        ];
     }
 
     /**
@@ -172,7 +172,7 @@ class FileTest extends TestCase
             ->expects($this->once())
             ->method('guess')
             ->with($this->equalTo($path))
-            ->will($this->returnValue($mimeType))
+            ->willReturn($mimeType)
         ;
 
         return $guesser;

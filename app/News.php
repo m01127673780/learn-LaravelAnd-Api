@@ -9,7 +9,7 @@ class News extends Model
 {
 use  SoftDeletes;
 
-      protected $fillable = ['title', 'add_by', 'desc', 'content', 'status'];
+      protected $fillable = ['title', 'user_id', 'desc', 'content', 'status'];
       protected $date = ['delete_at'];
   }
 

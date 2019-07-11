@@ -199,7 +199,8 @@ abstract class AnnotationClassLoader implements LoaderInterface
      */
     protected function getDefaultRouteName(\ReflectionClass $class, \ReflectionMethod $method)
     {
-        $name = strtolower(str_replace('\\', '_', $class->name).'_'.$method->name);
+        $name = str_replace('\\', '_', $class->name).'_'.$method->name;
+        $name = \function_exists('mb_strtolower') && preg_match('//u', $name) ? mb_strtolower($name, 'UTF-8') : strtolower($name);
         if ($this->defaultRouteIndex > 0) {
             $name .= '_'.$this->defaultRouteIndex;
         }
@@ -255,17 +256,17 @@ abstract class AnnotationClassLoader implements LoaderInterface
 
     private function resetGlobals()
     {
-        return array(
+        return [
             'path' => '',
-            'requirements' => array(),
-            'options' => array(),
-            'defaults' => array(),
-            'schemes' => array(),
-            'methods' => array(),
+            'requirements' => [],
+            'options' => [],
+            'defaults' => [],
+            'schemes' => [],
+            'methods' => [],
             'host' => '',
             'condition' => '',
             'name' => '',
-        );
+        ];
     }
 
     protected function createRoute($path, $defaults, $requirements, $options, $host, $schemes, $methods, $condition)

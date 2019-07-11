@@ -123,17 +123,13 @@ class Repository implements CacheContract, ArrayAccess
      */
     public function getMultiple($keys, $default = null)
     {
-        if (is_null($default)) {
-            return $this->many($keys);
-        }
+        $defaults = [];
 
         foreach ($keys as $key) {
-            if (! isset($default[$key])) {
-                $default[$key] = null;
-            }
+            $defaults[$key] = $default;
         }
 
-        return $this->many($default);
+        return $this->many($defaults);
     }
 
     /**
@@ -229,7 +225,7 @@ class Repository implements CacheContract, ArrayAccess
      */
     public function setMultiple($values, $ttl = null)
     {
-        $this->putMany($values, $ttl);
+        $this->putMany(is_array($values) ? $values : iterator_to_array($values), $ttl);
     }
 
     /**
@@ -552,7 +548,7 @@ class Repository implements CacheContract, ArrayAccess
         $duration = $this->parseDateInterval($duration);
 
         if ($duration instanceof DateTimeInterface) {
-            $duration = Carbon::now()->diffInSeconds(Carbon::createFromTimestamp($duration->getTimestamp()), false) / 60;
+            $duration = Carbon::now()->diffInRealSeconds($duration, false) / 60;
         }
 
         return (int) ($duration * 60) > 0 ? $duration : null;

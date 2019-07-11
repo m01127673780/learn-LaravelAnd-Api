@@ -30,11 +30,11 @@ class RouterTest extends TestCase
 
     public function testSetOptionsWithSupportedOptions()
     {
-        $this->router->setOptions(array(
+        $this->router->setOptions([
             'cache_dir' => './cache',
             'debug' => true,
             'resource_type' => 'ResourceType',
-        ));
+        ]);
 
         $this->assertSame('./cache', $this->router->getOption('cache_dir'));
         $this->assertTrue($this->router->getOption('debug'));
@@ -47,12 +47,12 @@ class RouterTest extends TestCase
      */
     public function testSetOptionsWithUnsupportedOptions()
     {
-        $this->router->setOptions(array(
+        $this->router->setOptions([
             'cache_dir' => './cache',
             'option_foo' => true,
             'option_bar' => 'baz',
             'resource_type' => 'ResourceType',
-        ));
+        ]);
     }
 
     public function testSetOptionWithSupportedOption()
@@ -88,7 +88,7 @@ class RouterTest extends TestCase
 
         $this->loader->expects($this->once())
             ->method('load')->with('routing.yml', 'ResourceType')
-            ->will($this->returnValue($routeCollection));
+            ->willReturn($routeCollection);
 
         $this->assertSame($routeCollection, $this->router->getRouteCollection());
     }
@@ -102,17 +102,17 @@ class RouterTest extends TestCase
 
         $this->loader->expects($this->once())
             ->method('load')->with('routing.yml', null)
-            ->will($this->returnValue(new RouteCollection()));
+            ->willReturn(new RouteCollection());
 
         $this->assertInstanceOf('Symfony\\Component\\Routing\\Matcher\\UrlMatcher', $this->router->getMatcher());
     }
 
     public function provideMatcherOptionsPreventingCaching()
     {
-        return array(
-            array('cache_dir'),
-            array('matcher_cache_class'),
-        );
+        return [
+            ['cache_dir'],
+            ['matcher_cache_class'],
+        ];
     }
 
     /**
@@ -124,17 +124,17 @@ class RouterTest extends TestCase
 
         $this->loader->expects($this->once())
             ->method('load')->with('routing.yml', null)
-            ->will($this->returnValue(new RouteCollection()));
+            ->willReturn(new RouteCollection());
 
         $this->assertInstanceOf('Symfony\\Component\\Routing\\Generator\\UrlGenerator', $this->router->getGenerator());
     }
 
     public function provideGeneratorOptionsPreventingCaching()
     {
-        return array(
-            array('cache_dir'),
-            array('generator_cache_class'),
-        );
+        return [
+            ['cache_dir'],
+            ['generator_cache_class'],
+        ];
     }
 
     public function testMatchRequestWithUrlMatcherInterface()

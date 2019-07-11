@@ -1,41 +1,46 @@
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
- @extends('index')
- @section('content')
- @section('css')
-         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <title>all_news</title>
 
- @endsection
-
-   @section('js')
-         <script type="text/javascript">
-           
-           alert('MOhamed Saeed Jacoub');
-         </script>
- @endsection
-
-
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+ 
+    </head>
+    <body>
         <div class="flex-center position-ref full-height">
-     
+     @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+<hr>
             <div class="content">
             <div class=" ">
-           
-<hr>
-{!! Form::open(['url'=>'insert/news' ]) !!}
-<div class="form-group">   
-  {{Form::text('title',old('title'),['placeholder'=>'title'])}}<br>     
-  {{Form::text('desc',old('desc'),['placeholder'=>'descripton'])}}<br>     
-  {{Form::number('add_by',old('add_by'),['placeholder'=>'add_by',''])}}<br>     
-  {{Form::textarea('content',old('content'),['placeholder'=>'content'])}}<br>     
-  {{Form::select('status',[''=>'......','active'=>'active','pending'=>'pending','deactive'=>'deactive'],old('status'),['placeholder'=>' placeholdermmmmmmmmm'])}}<br>     
-{{  Form::submit('send_btn')  }}
- {!! Form::close() !!}
-
-  
-
+                <form method="post" action="{{url('insert/news')}}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="text" name="title" value="title " placeholder="title"><br><br>
+                    <input type="text" name="desc" value=" desc" placeholder="desc"> <br><br> 
+                    <input type="number" name="add_by" value=" "min="1" max="5" placeholder="add_by"><br><br>
+                    <textarea    name="content" value=" content" placeholder="content">content</textarea> <br><br>
+                    <select name="status" placeholder="status"><br><br>
+                        <option value="active">active</option>
+                        <option value="pending">pending</option>
+                        <option value="deactive">deactive</option>
+                    </select>
+                    <input type="submit"  value="submit">
+                </form>
             </div>
                             <form method="post" action="{{url('del/news')}}">
-                            <input type="hidden" placeholder=""   name="_token" value="{{csrf_token()}}" >
+                            <input type="hidden"   name="_token" value="{{csrf_token()}}" >
                             <input type="hidden"   name="_method" value="DELETE" > 
 
                <table border="1" cellpadding="1" cellspacing="1">
@@ -49,19 +54,13 @@
 
               </tr>                 
 
-              
-                @foreach($all_news as $news)
-               <tr>
- 
+               @foreach($all_news as $news)
+               <tr>>
                    <td>{{$news->title}}</td>   
                    <td>{{$news->add_by}}</td>
                     <td>{{$news->desc}}</td>
                     <td>{{$news->status}}</td>
-          
-<td>{{!empty($news->deleted_at)?'Trashed':'published'}}</td>
-                    <td>                    <td>
-                    <td>
-
+                    <td>{{!empty($news->deleted_at)?'Trashed':'published'}}</td>
                     <td>{{$news->id}}</td>
                     <td>    
                             <input type="checkbox" name="id[]" value="{{$news->id}}" >
@@ -113,4 +112,5 @@
                 </form>
              </div><!--content-->
         </div>
-@endsection 
+    </body>
+</html>

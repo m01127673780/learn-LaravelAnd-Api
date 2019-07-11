@@ -11,8 +11,8 @@ class NewsController extends Controller{
  
  
 
-    $all_news =    News::withTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id','deleted_at']);
-    $soft_deletes= News::onlyTrashed()->orderBy('desc','desk')->get(['title','add_by','desc','content','status','id']);
+    $all_news =    News::withTrashed()->orderBy('desc','desk')->get(['title','user_id','desc','content','status','id','deleted_at']);
+    $soft_deletes= News::onlyTrashed()->orderBy('desc','desk')->get(['title','user_id','desc','content','status','id']);
     // $all_news = News::orderBy('desc','desk')->paginate(7);
     return view ('layout.all_news',['all_news' => $all_news,'trashed' => $soft_deletes]);
      } 
@@ -23,7 +23,7 @@ class NewsController extends Controller{
 
           'title'   =>Lang::get('admin.title'),
           'desc'    =>   trans('admin.desc'),
-          'add_by'  =>   trans('admin.add_by'), 
+          'user_id'  =>   trans('admin.user_id'), 
           'content' =>   trans('admin.content'),
           'status'  =>   trans('admin.status'), 
 
@@ -34,7 +34,7 @@ $date = $this->validate(request(),[
 
           'title'   =>    'required',
           'desc'    =>    'required',
-          'add_by'  =>    'required',
+          'user_id'  =>    'required',
           'content' =>    'required',
           'status'  =>    'required',
 ],[],$attribute);
@@ -44,7 +44,7 @@ $date = $this->validate(request(),[
      //  News::updateOrCreate([
           // 'title'=>request('title'),v 
           // 'desc'=>request('desc'),
-          // 'add_by'=>request('add_by'),
+          // 'user_id'=>request('user_id'),
           // 'content'=>request('content'),
           // 'status'=>request('status')
      //  ]);

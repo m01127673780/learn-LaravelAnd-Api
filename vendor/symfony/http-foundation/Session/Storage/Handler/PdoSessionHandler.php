@@ -118,7 +118,7 @@ class PdoSessionHandler extends AbstractSessionHandler
     /**
      * @var array Connection options when lazy-connect
      */
-    private $connectionOptions = array();
+    private $connectionOptions = [];
 
     /**
      * @var int The strategy for locking, see constants
@@ -130,7 +130,7 @@ class PdoSessionHandler extends AbstractSessionHandler
      *
      * @var \PDOStatement[] An array of statements to release advisory locks
      */
-    private $unlockStatements = array();
+    private $unlockStatements = [];
 
     /**
      * @var bool True when the current session exists but expired according to session.gc_maxlifetime
@@ -161,7 +161,7 @@ class PdoSessionHandler extends AbstractSessionHandler
      *  * db_time_col: The column where to store the timestamp [default: sess_time]
      *  * db_username: The username when lazy-connect [default: '']
      *  * db_password: The password when lazy-connect [default: '']
-     *  * db_connection_options: An array of driver-specific connection options [default: array()]
+     *  * db_connection_options: An array of driver-specific connection options [default: []]
      *  * lock_mode: The strategy for locking, see constants [default: LOCK_TRANSACTIONAL]
      *
      * @param \PDO|string|null $pdoOrDsn A \PDO instance or DSN string or URL string or null
@@ -169,7 +169,7 @@ class PdoSessionHandler extends AbstractSessionHandler
      *
      * @throws \InvalidArgumentException When PDO error mode is not PDO::ERRMODE_EXCEPTION
      */
-    public function __construct($pdoOrDsn = null, array $options = array())
+    public function __construct($pdoOrDsn = null, array $options = [])
     {
         if ($pdoOrDsn instanceof \PDO) {
             if (\PDO::ERRMODE_EXCEPTION !== $pdoOrDsn->getAttribute(\PDO::ATTR_ERRMODE)) {
@@ -468,13 +468,13 @@ class PdoSessionHandler extends AbstractSessionHandler
             throw new \InvalidArgumentException('URLs without scheme are not supported to configure the PdoSessionHandler');
         }
 
-        $driverAliasMap = array(
+        $driverAliasMap = [
             'mssql' => 'sqlsrv',
             'mysql2' => 'mysql', // Amazon RDS, for some weird reason
             'postgres' => 'pgsql',
             'postgresql' => 'pgsql',
             'sqlite3' => 'sqlite',
-        );
+        ];
 
         $driver = isset($driverAliasMap[$params['scheme']]) ? $driverAliasMap[$params['scheme']] : $params['scheme'];
 
@@ -683,7 +683,7 @@ class PdoSessionHandler extends AbstractSessionHandler
         switch ($this->driver) {
             case 'mysql':
                 // MySQL 5.7.5 and later enforces a maximum length on lock names of 64 characters. Previously, no limit was enforced.
-                $lockId = \substr($sessionId, 0, 64);
+                $lockId = substr($sessionId, 0, 64);
                 // should we handle the return value? 0 on timeout, null on error
                 // we use a timeout of 50 seconds which is also the default for innodb_lock_wait_timeout
                 $stmt = $this->pdo->prepare('SELECT GET_LOCK(:key, 50)');
