@@ -1,5 +1,4 @@
-use Illuminate\Support\Facades\View;
- @extends('index')
+  @extends('index')
 @section('content')
 @section('css')
 
@@ -9,7 +8,11 @@ use Illuminate\Support\Facades\View;
 <script type="text/javascript">
 </script>
 @endsection
-<div class="flex-center position-ref full-height">
+ <?php
+    $data = 'Test data key2' ;
+ ?>
+ @include('layout.othar_filr',[ 'key2'=> $data,'key'=>'Test data key2']) 
+ <div class="flex-center position-ref full-height">
 <div class="content" >
 <div class=" ">
 <hr>
@@ -91,7 +94,7 @@ force delete <i class="fa fa-trash-o" aria-hidden="true"></i>
 </td>
 </tr>
 @endforeach       
-
+{{}}
 </table> <!--table--> 
 <br> 
 <!-- <input type="submit" name="restore" value="restore" > -->
