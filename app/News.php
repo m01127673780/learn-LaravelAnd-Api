@@ -11,5 +11,9 @@ use  SoftDeletes;
 
       protected $fillable = ['title', 'user_id', 'desc', 'content', 'status'];
       protected $date = ['delete_at'];
+      public function user_id(){
+
+      	return $this->hasOne('App\user','id','user_id');
+      }
   }
  

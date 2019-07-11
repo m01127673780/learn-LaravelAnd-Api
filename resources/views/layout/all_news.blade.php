@@ -1,4 +1,5 @@
-@extends('index')
+use Illuminate\Support\Facades\View;
+ @extends('index')
 @section('content')
 @section('css')
 
@@ -41,7 +42,7 @@
 <tr>
 <td>{{$news->title}}</td>  
 <td>{{$news->desc}}</td>
-<td>{{$news->user_id}}</td>
+<td>{{$news->user_id()->first()->name }}</td>
 <td>{{$news->status}}</td>
 <td>{{!empty($news->deleted_at)?'Trashed':'published'}}</td>
 <td>{{$news->id}}</td>
