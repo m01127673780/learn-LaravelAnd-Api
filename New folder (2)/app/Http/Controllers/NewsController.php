@@ -14,20 +14,25 @@ class NewsController extends Controller{
        Session::push('Meseeg',['Key1'=>'val1']);
        Session::put('Meseeg1','Key1 val1');
        Session::all();
+ $all_news = News::withTrashed()->orderBy('desc','desk')->paginate(7);
 
     // $all_news =    News::withTrashed()->orderBy('desc','desk')->get(['title','user_id','desc','content','status','id','deleted_at']);
-    $all_news = News::withTrashed()->orderBy('desc','desk')->paginate(7);
     $soft_deletes= News::onlyTrashed()->orderBy('desc','desk')->get(['title','user_id','desc','content','status','id']);
     return view ('layout.all_news',['all_news' => $all_news,'trashed' => $soft_deletes]);
      } 
-     public function insert_news(Request $request){
-      if ($request->ajax()) {
+     public function insert_news(){
       $attribute=[
+ 
+
+
           'title'   =>Lang::get('admin.title'),
           'desc'    =>   trans('admin.desc'),
           'user_id'  =>   trans('admin.user_id'), 
           'content' =>   trans('admin.content'),
           'status'  =>   trans('admin.status'), 
+
+
+
         ];
 $date = $this->validate(request(),[
 
@@ -37,10 +42,18 @@ $date = $this->validate(request(),[
           'content' =>    'required',
           'status'  =>    'required',
 ],[],$attribute);
-   $news =   News::create($date);
-   $html =view('layout.row_news', ['news'=>$news])->render();
-   return response (['status'=>true,     'result'     =>$html]);
- }
+
+ DB::table('news')->insertGetId( $date);
+  
+//      News::create($date);
+     //  News::updateOrCreate([
+					// 'title'=>request('title'),v 
+					// 'desc'=>request('desc'),
+					// 'user_id'=>request('user_id'),
+					// 'content'=>request('content'),
+					// 'status'=>request('status')
+     //  ]);
+
        Session::push('Meseeg',['Key1'=>'val1']);
        Session::put('Meseeg1','Key1 val1');
   

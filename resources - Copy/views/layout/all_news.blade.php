@@ -9,82 +9,54 @@
 
 <script type="text/javascript">
      $(document).on('click','#add_news', function () { 
-       var form = $('#news').serialize();
-       var url = $('#news').attr('action');
-         $.ajax({
-            url:url,
-            dataType:'json',
-            data:form,
-            type:'post',
-            beforeSend: function(){
-                   $('.alert_error h1').empty();
-                   $('.alert_error ul').empty();
-            },success:function (data){
-                if (data.status == true ) {
-                 $('list_news tbody').prepend(data.result);
-                 $('#news')[0].reset();
-                }
-            },error: function(data_error,exception){
-                if(exception == 'error') 
-                    console.log(data_error);
-                  // alert(data_error.message);
-                  var error_list = '';
-                 $('.alert_error h1').html(data_error.responseJSON.message);
-                 $.each(data_error.responseJSON.errors,function(index,v){
-                    error_list += '<li>'+v+'</li>'
-                 $('.alert_error ul').html(error_list);
-                  });
-            }
-         });
-         return false;
+        alert('test');
+        return false;
 });
+    
 </script>
 
 @endsection
-<div class="alert_error">
-   
-     <center><h1></h1></center>
-     <ul>
-         
-     </ul>
-
-</div>
 <div class="flex-center position-ref full-height">
 <div class="content" >
 <div class=" ">
 <hr>
-{!! Form::open(['url'=>'insert/news','id'=>'news' ]) !!}
-
+{!! Form::open(['url'=>'insert/news' ]) !!}
 <div class="form-group" style="padding:7px;max-width: 30%;">   
-{!!Form::text('title',old('title'),['placeholder'=>'title','class'=>'form-control'])!!}<br>     
-{!!Form::text('desc',old('desc'),['placeholder'=>'descripton','class'=>'form-control'])!!}<br>     
-{!!Form::number('user_id',old('user_id'),['placeholder'=>'user_id','class'=>'form-control'])!!}<br>     
-{!!Form::textarea('content',old('content'),['placeholder'=>'content','class'=>'form-control'])!!}<br>     
-{!!Form::select('status',[''=>'......','actiev'=>'actiev','pending'=>'pending','deactive'=>'deactive'],old('status'),['placeholder'=>' ........','class'=>'form-control'])!!}<br>
-<input type="submit" value="seeend" id="add_news">
-
+{{Form::text('title',old('title'),['placeholder'=>'title','class'=>'form-control'])}}<br>     
+{{Form::text('desc',old('desc'),['placeholder'=>'descripton','class'=>'form-control'])}}<br>     
+{{Form::number('user_id',old('user_id'),['placeholder'=>'user_id','class'=>'form-control'])}}<br>     
+{{Form::textarea('content',old('content'),['placeholder'=>'content','class'=>'form-control'])}}<br>     
+{{Form::select('status',[''=>'......','actiev'=>'actiev','pending'=>'pending','deactive'=>'deactive'],old('status'),['placeholder'=>' ........','class'=>'form-control'])}}<br>     
+{{ Form::button('<i class="fa fa-edit fa-spin"></i> Send value ', ['type' => 'submit','Send value', 'class' => 'btn btn-primary  btn-sm','id'=>'add_news'] )  }}
 {!! Form::close() !!}
 </div>
     <form method="post" action="{{url('del/news')}}">
     <input type="hidden" placeholder=""   name="_token" value="{{csrf_token()}}" >
     <input type="hidden"   name="_method" value="DELETE" > 
-    <table border="1" cellpadding="1" cellspacing="1" class="  list_news  table table-bordered ">
+    <table border="1" cellpadding="1" cellspacing="1" class="table table-bordered ">
     <thead class="btn-light">
     <tr>
     <th >Titel</th>
     <th >Desc</th>
-    <th >addby</th>
+    <th >addby</th> 
     <th >status</th>
     <th >deleted </th>
     <th >action</th>
     <th >ch</th>
     </tr>            
-</thead>    
-<tbody >               
+</thead>                   
 @foreach($all_news as $news)
-@include('layout.row_news')
+<tr>
+<td>{{$news->title}}</td>  
+<td>{{$news->desc}}</td>
+<td>{{$news->user_id}}</td>
+<td>{{$news->status}}</td>
+<td>{{!empty($news->deleted_at)?'Trashed':'published'}}</td>
+<td>{{$news->id}}</td>
+<td> <input type="checkbox" name="id[]" value="{{$news->id}}" ></td>
+   <!-- <td>{{var_dump($news->deleted_at)}}</td> -->
+</tr>
 @endforeach 
-</tbody>
 </table> <!--table--> 
 {!! $all_news-> render() !!}
 <br>
