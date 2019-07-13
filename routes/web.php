@@ -36,8 +36,15 @@ Route::group(['middleware'=> 'guest'],function(){
 Route::get('manual/login', 'Users@login_get');
 Route::post('manual/login', 'Users@login_post');
 });   
-Route::get('admin/path', function(){
-	return 'Adminn path';
-})->middleware('AuthAdmin:webadmin'); 
-Route::get('admin/login', 'AdminController@login_get');
-Route::post('admin/login', 'AdminController@login_post');
+ Route::get('TestMethod', 'HomeController@TestMethod');
+
+
+
+  Route::get('admin/path',function() {
+  return	Auth::guard('webadmin')->user();
+  	})->middleware('AuthAdmin:webadmin');
+
+  Route::get('admin/login', 'Admin@login_get');
+Route::post('admin/login', 'Admin@login_post');
+
+// Route::get('admin/login', 'AdminController@login_get');

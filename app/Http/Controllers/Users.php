@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
-use Auth;
+
 class Users extends Controller
 {
   public function login_get()

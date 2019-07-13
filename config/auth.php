@@ -42,10 +42,10 @@ return [
         ],
 
         'webadmin' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'admin',
-        ], 
-         'api' => [
+        ],
+        'api' => [
             'driver' => 'token',
             'provider' => 'users',
         ],
@@ -72,11 +72,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
-        ], 
-        'webadmin' => [
+        ],
+        'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Admin ::class,
-        ] 
+            'model' => App\Admin::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
