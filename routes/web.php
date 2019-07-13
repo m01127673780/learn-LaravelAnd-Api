@@ -22,12 +22,17 @@ Route::get('/', function () {
  Route::post('test/1', function(Illuminate\Http\Request $request){
      return $request->all();
  });
+Route::group(['middleware'=> 'news'],function(){
 
 Route::get('all/news','NewsController@all_news');
 Route::post('insert/news','NewsController@insert_news');
 Route::delete('del/news/{id?}','NewsController@delete');
-Auth::routes();
+});
 
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware'=> 'guest'],function(){
 Route::get('manual/login', 'Users@login_get');
 Route::post('manual/login', 'Users@login_post');
+});    
