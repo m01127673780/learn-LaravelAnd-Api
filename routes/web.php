@@ -35,4 +35,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=> 'guest'],function(){
 Route::get('manual/login', 'Users@login_get');
 Route::post('manual/login', 'Users@login_post');
-});    
+});   
+ Route::get('TestMethod', 'HomeController@TestMethod');

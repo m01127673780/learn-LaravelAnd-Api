@@ -13,13 +13,13 @@ class News
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next){
-         if (!auth()->check ())
-        {
+    public function handle($request, Closure $next ){
+         if (!auth()->check()){
+        
             return redirect('manual/login');
         }  
             
        
         return $next($request);
-    }
+    } 
 } 
