@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Auth;
 
 //use Illuminate\Http\Request;
-use Auth;
-class Users extends Controller
+
+class AdminController extends Controller
 {
   public function login_get()
     {
