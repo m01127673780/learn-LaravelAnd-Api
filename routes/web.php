@@ -41,10 +41,26 @@ Route::post('manual/login', 'Users@login_post');
 
 
   Route::get('admin/path',function() {
-  return	Auth::guard('webadmin')->user();
+    return	view('welcom_admin');
   	})->middleware('AuthAdmin:webadmin');
 
-  Route::get('admin/login', 'Admin@login_get');
+Route::group(['middleware'=> 'guest:webadmin'],function(){
+Route::get('admin/login', 'Admin@login_get');
 Route::post('admin/login', 'Admin@login_post');
+
+  	}); 
+Route::get('admin/logout',function() {
+auth()->guard('webadmin')->logout();
+   return	redirect('admin/login');
+  	});
+ 
+Route::group(['middleware'=> 'auth'],function(){
+		Route::get('manual/logout',function() {
+		Auth::logout();
+		return	redirect('manual/login');
+ 
+  	});
+ 
+  	});
 
 // Route::get('admin/login', 'AdminController@login_get');
