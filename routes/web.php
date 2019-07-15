@@ -16,15 +16,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('test/route', function (Illuminate\Support\Facades\Request $request) {
+    return $request::segments();
+});
+
 
 
  Route::get('test','NewsController@test' );
  Route::post('test/1', function(Illuminate\Http\Request $request){
      return $request->all();
  });
+ Route::get('all/news','NewsController@all_news');
+
 Route::group(['middleware'=> 'news'],function(){
 
-Route::get('all/news','NewsController@all_news');
 Route::post('insert/news','NewsController@insert_news');
 Route::delete('del/news/{id?}','NewsController@delete');
 });

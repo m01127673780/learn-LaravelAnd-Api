@@ -5,8 +5,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 @endsection
 @section('js')
+{{var_dump(Request::segments())}}
  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
+ 
 <script type="text/javascript">
      $(document).on('click','#add_news', function () { 
        var form = $('#news').serialize();
