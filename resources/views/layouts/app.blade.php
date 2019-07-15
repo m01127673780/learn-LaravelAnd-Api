@@ -46,6 +46,16 @@
 <!--   -->                            <li><a href="{{url('admin/login') }}">Log in to Admin</a></li>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
+                            <li>
+                                    
+                                        <a href="{{ route('logout' ) }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+
+                            </li>
                         @else 
                             <li class="dropdown">
                                 <a  style="display: inline-block;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
@@ -59,7 +69,7 @@
                                         <a href="{{url('manual/logout')}}"> ManualLogout</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{{ route('logout' ) }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
@@ -72,6 +82,11 @@
                                 </ul>
                             </li>
                         @endguest
+
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
                     </ul>
                 </div>
             </div>
