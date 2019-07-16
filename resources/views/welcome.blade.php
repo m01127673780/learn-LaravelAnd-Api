@@ -80,6 +80,12 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+
+                    @check
+                    You are visitor
+ 
+                     You are User
+                    @endcheck
                 </div>
 
                 <div class="links">
