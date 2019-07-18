@@ -39,8 +39,11 @@
               
              <center>
              {!!Form::open(['files'=>true, 'url'=>'upload/file'])!!}
-             {!!Form::file('file')!!}
-             {!!Form::submit('Save')!!}
+<!--               {!!Form::file('file[]',['multiple'=>'yes'])!!}-->  
+           File1 =  {!!Form::file('file[]',['multiple'=>'yes'])!!}
+            File2 =   {!!Form::file('file[]',['multiple'=>'yes'])!!}
+<!--              {!!Form::file('file')!!}
+ -->             {!!Form::submit('Save')!!}
              {!!Form::close()!!}
   
 
