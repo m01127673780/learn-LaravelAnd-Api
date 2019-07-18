@@ -1,3 +1,26 @@
+ 
+@include('layouts.app')
+ 
+  @check
+          <center> <h1>         You are User </h1></center>
+
+
+ <li>
+
+                                    
+                                     
+
+                            </li>
+                     <li>
+                                    
+           
+                    @else 
+                     You are visitor 
+
+@endcheck                </div>
+
+
+
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
@@ -70,24 +93,39 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                    @else 
                     @endauth
                 </div>
             @endif
-
+ 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
-
+Laravel
                     @check
-                    You are visitor
- 
-                     You are User
-                    @endcheck
-                </div>
+                    You are User
 
+
+ <li>
+
+                                    
+                                        <a href="{{ route('logout' ) }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+
+                            </li>
+                     <li>
+                                    
+           
+                    @else
+                  
+             <center><h1 >     You are visitor </h1></center>  
+
+@endcheck                </div>
+
+@yield('content')
                 <div class="links">
                     <a href="https://laravel.com/docs">Documentation</a>
                     <a href="https://laracasts.com">Laracasts</a>

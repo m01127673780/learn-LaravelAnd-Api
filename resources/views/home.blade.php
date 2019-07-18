@@ -14,11 +14,7 @@
                         </div>
                     @endif
 
-<!--                     @include ('comment')  --> 
-                    @comment   
-                   
-
-
+                    You are logged in!
                 </div>
             </div>
         </div>

@@ -10,8 +10,7 @@ use DB;
 class NewsController extends Controller{
    public function all_news(Request $request ){  
    //Session::->flush();
- return $request->segments() ;
-
+// return $request->segments();
        Session::push('Meseeg',['Key1'=>'val1']);
        Session::put('Meseeg1','Key1 val1');
        Session::all();

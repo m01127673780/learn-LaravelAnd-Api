@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Config;
 
 class LoginController extends Controller
 {
@@ -35,8 +34,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-              Config::set('auth.defaults.guard','webadmin');
-
         $this->middleware('guest')->except('logout');
     }
 }
