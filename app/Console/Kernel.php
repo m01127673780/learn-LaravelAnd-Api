@@ -26,6 +26,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->exec('php artisan myproject:refresh')->everyFiveMinutes(); 
+// * * * * * php /E:/xampp/htdocs/learn-Laravel-And-Api/artisan schedule:run >> /dev/null 2>&1
+
+
+        // php artisan myproject:refresh > "NUL" 2>&1
     }
 
     /**

@@ -17,6 +17,10 @@ Route::get('/', function () {
  
 
 
+ Route::get('send/message', function () {
+  Mail::to('OmrAhamed@gmail.com')->send(new \App\Mail\TestMailable('Custom Message'));
+    return 'test send message' ;
+ });
  Route::get('up', function () {
     return 'welcome' ;
 });
@@ -25,12 +29,10 @@ Route::get('/', function () {
     return view('up') ;
 });
   Route::post('upload/file','Upload@upload') ;
-
-
-
 Route::get('Test/Routs/moh', function (Illuminate\Support\Facades\Request $request) {
     return $request::segments();
 });
+
  
 
  Route::get('test','NewsController@test' );
